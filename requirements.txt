@@ -10,6 +10,7 @@ notion-client>=2.2.1
 # 工具库
 python-dotenv==1.0.0
 pydantic>=2.0.0
+pyyaml>=6.0
 
 # 测试
 pytest==7.4.0

@@ -1,0 +1,11 @@
+{
+  "telegram_bot_token": "你的 Telegram Bot Token (从 @BotFather 获取)",
+  "llm_api_key": "你的 LLM API Key (OpenAI 或兼容服务)",
+  "llm_base_url": "https://api.openai.com/v1",
+  "llm_model": "gpt-4o-mini",
+  "notion_token": "你的 Notion Integration Token",
+  "notion_database_id": "你的 Notion Database ID",
+  "max_retries": 3,
+  "retry_base_delay": 1.0,
+  "log_level": "INFO"
+}

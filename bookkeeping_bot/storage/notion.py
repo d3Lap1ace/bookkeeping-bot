@@ -5,10 +5,10 @@ from typing import Tuple
 from notion_client import Client as NotionClient
 from notion_client.errors import APIResponseError
 
-from storage.base import ExpenseStorage
-from storage.models import Expense, QueryFilter, StorageResult
-from utils.exceptions import RateLimitError, StorageError
-from utils.retry import retry_with_backoff
+from bookkeeping_bot.storage.base import ExpenseStorage
+from bookkeeping_bot.storage.models import Expense, QueryFilter, StorageResult
+from bookkeeping_bot.utils.exceptions import RateLimitError, StorageError
+from bookkeeping_bot.utils.retry import retry_with_backoff
 
 
 class NotionStorage(ExpenseStorage):

@@ -2,7 +2,7 @@
 import asyncio
 import logging
 
-from telegram.ext import Application
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 from config import Config
 from core.agent import BookkeepingAgent

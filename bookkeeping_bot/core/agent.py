@@ -3,11 +3,11 @@ import json
 from datetime import datetime, timedelta
 from typing import Optional
 
-from core.llm_client import LLMClient
-from core.skill_loader import SkillLoader
-from storage.base import ExpenseStorage
-from storage.models import Expense, QueryFilter
-from utils.exceptions import LLMError
+from bookkeeping_bot.core.llm_client import LLMClient
+from bookkeeping_bot.core.skill_loader import SkillLoader
+from bookkeeping_bot.storage.base import ExpenseStorage
+from bookkeeping_bot.storage.models import Expense, QueryFilter
+from bookkeeping_bot.utils.exceptions import LLMError
 
 
 class BookkeepingAgent:
@@ -336,8 +336,6 @@ class BookkeepingAgent:
         Returns:
             Expense 对象或 None
         """
-        from storage.models import QueryFilter
-
         # 查询所有记录（简化实现，生产环境应优化）
         filters = QueryFilter(limit=100)
         expenses = await self.storage.query_expenses(filters)
