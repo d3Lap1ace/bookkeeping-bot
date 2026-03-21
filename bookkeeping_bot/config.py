@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-from utils.exceptions import ConfigurationError
+from bookkeeping_bot.utils.exceptions import ConfigurationError
 
 
 @dataclass

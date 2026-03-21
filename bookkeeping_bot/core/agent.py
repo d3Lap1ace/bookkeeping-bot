@@ -112,6 +112,13 @@ class BookkeepingAgent:
                 "content": result,
             })
 
+        fallback_response = self._format_tool_responses(tool_responses)
+
+        # Gemini 的 OpenAI 兼容接口在二次提交 tool 结果时更容易触发 INVALID_ARGUMENT。
+        # MVP 场景下直接返回工具执行结果，比额外润色一轮更稳。
+        if getattr(self.llm, "is_gemini_compatible", False):
+            return fallback_response
+
         # 将 tool_calls 和响应添加到消息列表
         messages.append({
             "role": "assistant",
@@ -126,10 +133,16 @@ class BookkeepingAgent:
                 messages=messages,
                 tools=list(self.skills.values()),
             )
-        except LLMError as e:
-            return f"操作完成，但生成回复时出错：{e}"
+        except LLMError:
+            return fallback_response
 
         return final_response.get("content", "操作已完成。")
+
+    @staticmethod
+    def _format_tool_responses(tool_responses: list[dict]) -> str:
+        """将一个或多个工具结果拼成最终回复。"""
+        contents = [response["content"] for response in tool_responses if response.get("content")]
+        return "\n".join(contents) if contents else "操作已完成。"
 
     async def _execute_skill(self, skill_name: str, arguments: dict) -> str:
         """

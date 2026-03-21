@@ -45,7 +45,19 @@
 ### 1. 安装
 
 ```bash
-pip install bookkeeping-bot
+python -m pip install .
+```
+
+开发模式安装：
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+安装完成后会生成命令：
+
+```bash
+bookkeeping-bot
 ```
 
 ### 2. 准备 Notion 数据库
@@ -192,10 +204,22 @@ source .venv/bin/activate  # Linux/Mac
 .venv\Scripts\activate  # Windows
 
 # 安装依赖
-pip install -e ".[dev]"
+python -m pip install -e ".[dev]"
 
 # 运行测试
 pytest
+```
+
+### 构建安装包
+
+```bash
+python -m build
+```
+
+构建完成后产物在 `dist/` 目录下。也可以直接安装本地构建结果：
+
+```bash
+python -m pip install dist/bookkeeping_bot-0.1.0-py3-none-any.whl
 ```
 
 ### 项目结构

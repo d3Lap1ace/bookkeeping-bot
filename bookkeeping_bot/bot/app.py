@@ -1,5 +1,5 @@
 """Telegram Bot 应用创建"""
-from telegram.ext import Application
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 from bookkeeping_bot.bot.handlers import TelegramBotHandler
 from bookkeeping_bot.core.agent import BookkeepingAgent
@@ -22,12 +22,11 @@ def create_app(bot_token: str, agent: BookkeepingAgent) -> Application:
     bot_handler = TelegramBotHandler(agent=agent)
 
     # 注册命令处理器
-    application.add_handler("start", bot_handler.handle_start)
-    application.add_handler("help", bot_handler.handle_help)
-    application.add_handler("clear", bot_handler.handle_clear)
+    application.add_handler(CommandHandler("start", bot_handler.handle_start))
+    application.add_handler(CommandHandler("help", bot_handler.handle_help))
+    application.add_handler(CommandHandler("clear", bot_handler.handle_clear))
 
     # 注册消息处理器
-    from telegram.ext import MessageHandler, filters
     application.add_handler(
         MessageHandler(filters.TEXT & ~filters.COMMAND, bot_handler.handle_message)
     )

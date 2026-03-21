@@ -22,11 +22,17 @@ class LLMClient:
             base_url: API 基础 URL（默认为 OpenAI 官方地址）
             model: 使用的模型名称
         """
+        self.base_url = base_url.rstrip("/")
         self.client = AsyncOpenAI(
             api_key=api_key,
-            base_url=base_url,
+            base_url=self.base_url,
         )
         self.model = model
+
+    @property
+    def is_gemini_compatible(self) -> bool:
+        """标识当前是否走 Gemini 的 OpenAI 兼容端点。"""
+        return "generativelanguage.googleapis.com" in self.base_url
 
     @retry_with_backoff(retryable_exceptions=(RateLimitError,))
     async def chat_with_tools(
@@ -53,6 +59,7 @@ class LLMClient:
                 model=self.model,
                 messages=messages,
                 tools=tools,
+                tool_choice="auto",
             )
 
             # 解析响应

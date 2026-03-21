@@ -3,7 +3,11 @@ import asyncio
 import functools
 import logging
 from typing import Callable, TypeVar
-from typing_extensions import ParamSpec
+
+try:
+    from typing import ParamSpec
+except ImportError:
+    from typing_extensions import ParamSpec
 
 from bookkeeping_bot.utils.exceptions import RateLimitError
 

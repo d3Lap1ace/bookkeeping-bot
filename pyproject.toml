@@ -31,11 +31,13 @@ dependencies = [
     "notion-client>=2.2.1",
     "python-dotenv==1.0.0",
     "pydantic>=2.0.0",
+    "typing-extensions>=4.8.0",
     "pyyaml>=6.0",
 ]
 
 [project.optional-dependencies]
 dev = [
+    "build>=1.2.2",
     "pytest==7.4.0",
     "pytest-asyncio==0.21.0",
     "pytest-cov==4.1.0",
@@ -50,7 +52,10 @@ Repository = "https://github.com/d3lap1ace/bookeeping-skills"
 Issues = "https://github.com/d3lap1ace/bookeeping-skills/issues"
 
 [tool.setuptools]
-packages = ["bookkeeping_bot"]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["bookkeeping_bot*"]
 
 [tool.setuptools.package-data]
 bookkeeping_bot = ["skills/*.md"]
