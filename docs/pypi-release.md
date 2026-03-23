@@ -20,7 +20,7 @@
 建议使用以下配置：
 
 - Owner: `d3lap1ace`
-- Repository name: `bookeeping-skills`
+- Repository name: `bookkeeping-bot`
 - Workflow name:
   - TestPyPI: `publish-testpypi.yml`
   - PyPI: `publish-pypi.yml`

@@ -50,7 +50,7 @@ class Config:
         if not config_path.exists():
             raise ConfigurationError(
                 f"配置文件不存在: {config_path}\n"
-                f"请创建配置文件，参考示例: https://github.com/d3lap1ace/bookeeping-skills#配置"
+                f"请创建配置文件，参考示例: https://github.com/d3lap1ace/bookkeeping-bot#配置"
             )
 
         try:

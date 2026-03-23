@@ -47,9 +47,9 @@ dev = [
 bookkeeping-bot = "bookkeeping_bot.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/d3lap1ace/bookeeping-skills"
-Repository = "https://github.com/d3lap1ace/bookeeping-skills"
-Issues = "https://github.com/d3lap1ace/bookeeping-skills/issues"
+Homepage = "https://github.com/d3lap1ace/bookkeeping-bot"
+Repository = "https://github.com/d3lap1ace/bookkeeping-bot"
+Issues = "https://github.com/d3lap1ace/bookkeeping-bot/issues"
 
 [tool.setuptools]
 include-package-data = true

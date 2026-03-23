@@ -209,8 +209,8 @@ Bot: ✅ 已删除支出记录
 
 ```bash
 # 克隆仓库
-git clone https://github.com/d3lap1ace/bookeeping-skills.git
-cd bookeeping-skills
+git clone https://github.com/d3lap1ace/bookkeeping-bot.git
+cd bookkeeping-bot
 
 # 创建虚拟环境
 python -m venv .venv
@@ -314,4 +314,4 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 ## 📮 联系
 
 - GitHub: [d3lap1ace](https://github.com/d3lap1ace)
-- Issues: [https://github.com/d3lap1ace/bookeeping-skills/issues](https://github.com/d3lap1ace/bookeeping-skills/issues)
+- Issues: [https://github.com/d3lap1ace/bookkeeping-bot/issues](https://github.com/d3lap1ace/bookkeeping-bot/issues)
