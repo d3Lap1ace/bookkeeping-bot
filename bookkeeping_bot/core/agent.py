@@ -50,9 +50,19 @@ class BookkeepingAgent:
         Returns:
             Agent 的自然语言回复
         """
+        today = datetime.now()
+
         # 构建消息列表
         messages = [
             {"role": "system", "content": self.system_prompt},
+            {
+                "role": "system",
+                "content": (
+                    f"当前日期是 {today.strftime('%Y-%m-%d')}。"
+                    " 当用户提到今天、昨天、明天、本周、本月等相对日期时，"
+                    "优先直接调用工具并传递这些日期表达，而不是追问用户具体公历日期。"
+                ),
+            },
         ]
 
         # 添加对话历史
@@ -77,7 +87,7 @@ class BookkeepingAgent:
             return await self._execute_tool_calls(messages, response["tool_calls"])
         else:
             # LLM 直接返回了内容
-            return response.get("content", "抱歉，我没有理解您的意思。")
+            return response.get("content") or "抱歉，我没有理解您的意思。"
 
     async def _execute_tool_calls(self, messages: list[dict], tool_calls: list[dict]) -> str:
         """
@@ -136,7 +146,7 @@ class BookkeepingAgent:
         except LLMError:
             return fallback_response
 
-        return final_response.get("content", "操作已完成。")
+        return final_response.get("content") or fallback_response
 
     @staticmethod
     def _format_tool_responses(tool_responses: list[dict]) -> str:

@@ -1,7 +1,9 @@
 """测试数据模型"""
-import pytest
 from datetime import datetime
-from storage.models import Expense, QueryFilter, StorageResult
+
+import pytest
+
+from bookkeeping_bot.storage.models import Expense, QueryFilter, StorageResult
 
 
 class TestExpense:

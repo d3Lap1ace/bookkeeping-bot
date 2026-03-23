@@ -55,14 +55,15 @@ class TelegramBotHandler:
 
             # 调用 Agent 处理消息
             response = await self.agent.process_message(user_message, history)
+            safe_response = response or "操作已完成。"
 
             # 更新对话历史（保留最近 10 条）
             history.append({"role": "user", "content": user_message})
-            history.append({"role": "assistant", "content": response})
+            history.append({"role": "assistant", "content": safe_response})
             self._conversation_history[user_id] = history[-10:]
 
             # 发送回复
-            await update.message.reply_text(response)
+            await update.message.reply_text(safe_response)
 
         except BookkeepingError as e:
             # 业务错误，使用格式化器处理

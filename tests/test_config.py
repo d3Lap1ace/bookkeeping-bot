@@ -1,7 +1,10 @@
 """测试配置管理"""
 import os
+
 import pytest
-from config import Config
+
+from bookkeeping_bot.config import Config
+from bookkeeping_bot.utils.exceptions import ConfigurationError
 
 
 class TestConfig:
@@ -13,7 +16,7 @@ class TestConfig:
         for key in ["TELEGRAM_BOT_TOKEN", "LLM_API_KEY", "NOTION_TOKEN", "NOTION_DATABASE_ID"]:
             os.environ.pop(key, None)
 
-        with pytest.raises(ValueError):
+        with pytest.raises(ConfigurationError):
             Config.from_env()
 
     def test_from_env_with_all_required_vars(self):

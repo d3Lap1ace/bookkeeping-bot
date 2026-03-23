@@ -1,7 +1,8 @@
 """测试 Skill 加载器"""
 import pytest
 from pathlib import Path
-from core.skill_loader import SkillLoader
+
+from bookkeeping_bot.core.skill_loader import SkillLoader
 
 
 class TestSkillLoader:
@@ -9,7 +10,7 @@ class TestSkillLoader:
 
     def test_load_all(self):
         """测试加载所有 Skills"""
-        loader = SkillLoader(skills_dir="skills")
+        loader = SkillLoader(skills_dir=Path("bookkeeping_bot/skills"))
         skills = loader.load_all()
 
         # 验证所有 Skills 都被加载
@@ -27,7 +28,7 @@ class TestSkillLoader:
 
     def test_skill_has_description(self):
         """测试 Skill 有描述"""
-        loader = SkillLoader(skills_dir="skills")
+        loader = SkillLoader(skills_dir=Path("bookkeeping_bot/skills"))
         skills = loader.load_all()
 
         for skill_name, skill_def in skills.items():
@@ -37,7 +38,7 @@ class TestSkillLoader:
 
     def test_skill_has_parameters(self):
         """测试 Skill 有参数定义"""
-        loader = SkillLoader(skills_dir="skills")
+        loader = SkillLoader(skills_dir=Path("bookkeeping_bot/skills"))
         skills = loader.load_all()
 
         for skill_name, skill_def in skills.items():
@@ -48,7 +49,7 @@ class TestSkillLoader:
 
     def test_record_expense_skill_parameters(self):
         """测试 record_expense Skill 的参数"""
-        loader = SkillLoader(skills_dir="skills")
+        loader = SkillLoader(skills_dir=Path("bookkeeping_bot/skills"))
         skills = loader.load_all()
 
         record_skill = skills["record_expense"]
@@ -64,7 +65,7 @@ class TestSkillLoader:
 
     def test_get_system_prompt(self):
         """测试获取 System Prompt"""
-        loader = SkillLoader(skills_dir="skills")
+        loader = SkillLoader(skills_dir=Path("bookkeeping_bot/skills"))
         prompt = loader.get_system_prompt()
 
         assert "智能记账助手" in prompt
@@ -73,7 +74,7 @@ class TestSkillLoader:
 
     def test_cache_works(self):
         """测试缓存机制"""
-        loader = SkillLoader(skills_dir="skills")
+        loader = SkillLoader(skills_dir=Path("bookkeeping_bot/skills"))
 
         # 第一次调用
         skills1 = loader.load_all()

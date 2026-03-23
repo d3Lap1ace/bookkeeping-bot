@@ -44,6 +44,21 @@
 
 ### 1. 安装
 
+推荐使用 `pipx` 安装 CLI 工具：
+
+```bash
+pipx install bookkeeping-bot
+```
+
+如果还没有安装 `pipx`：
+
+```bash
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+```
+
+本地源码安装：
+
 ```bash
 python -m pip install .
 ```
@@ -221,6 +236,16 @@ python -m build
 ```bash
 python -m pip install dist/bookkeeping_bot-0.1.0-py3-none-any.whl
 ```
+
+如果你想先本地验证 `pipx` 安装体验，也可以直接安装构建后的 wheel：
+
+```bash
+pipx install dist/bookkeeping_bot-0.1.0-py3-none-any.whl
+```
+
+### 发布到 PyPI
+
+自动发布流程和 Trusted Publishing 配置说明见 [docs/pypi-release.md](docs/pypi-release.md)。
 
 ### 项目结构
 
